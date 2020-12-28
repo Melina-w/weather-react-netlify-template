@@ -9,6 +9,7 @@ export default function App() {
         <a
           href="https://github.com/Melina-w/weather-react-netlify-template"
           target="_blank"
+          rel="noreferrer"
         >
           open-sourced on GitHub
         </a>
