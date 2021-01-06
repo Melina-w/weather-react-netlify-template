@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WeatherForecastDay(props) {
   return (
-    <div classname="card-body" style={{ display: "inline-block" }}>
+    <div className="card-body" style={{ display: "inline-block" }}>
       <h4>{props.day}</h4>
       <img
         src="http://openweathermap.org/img/wn/04n@2x.png"

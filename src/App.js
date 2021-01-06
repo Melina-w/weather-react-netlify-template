@@ -1,4 +1,5 @@
 import "./App.css";
+import "./Weather.css";
 import Search from "./Search";
 import Weather from "./Weather";
 import DailyForecastData from "./DailyForecastData";
