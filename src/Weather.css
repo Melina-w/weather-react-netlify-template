@@ -1,0 +1,95 @@
+.weather-box {
+  padding: 15px 0;
+}
+
+.temperature .active {
+  color: #000;
+  cursor: default;
+}
+
+.temperature .active:hover {
+  text-decoration: none;
+}
+.search {
+  padding: 20px 10px;
+  border: 2px solid #000;
+  border-radius: 30px;
+  width: 50%;
+  background-color: #b3a5b3;
+}
+
+.search input {
+  border: 0;
+  padding: 0;
+  width: calc(100% - 21px);
+  background-color: transparent;
+}
+
+.search input:focus {
+  outline: none;
+}
+.weather-details {
+  font-size: 20px;
+}
+
+.selected-day {
+  text-align: center;
+}
+
+.selected-city {
+  text-align: center;
+  font-size: 20px;
+}
+
+.weather-icon {
+  display: block;
+  margin: 0 auto;
+  font-size: 60px;
+}
+.current-degree {
+  text-align: center;
+  font-size: 18px;
+}
+
+.temperature {
+  display: block;
+  margin: 0 auto;
+}
+
+.forecast {
+  text-align: center;
+}
+
+/* add css to all cards inside the forecast */
+.card-body {
+  background-color: transparent;
+  padding-top: 30px;
+  margin-right: 45px;
+  margin-left: 7.5px;
+  text-align: center;
+}
+
+#search-form button {
+  background-color: transparent;
+  border: none;
+}
+.credits {
+  text-align: center;
+}
+
+#current-location-btn {
+  font-size: 30px;
+  margin: 15px 40px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.good-weather-background {
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  columns: #333333;
+}
+.bad-weather-background {
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
