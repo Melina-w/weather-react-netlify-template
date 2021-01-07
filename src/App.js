@@ -1,6 +1,5 @@
 import "./App.css";
 import "./Weather.css";
-import Search from "./Search";
 import Weather from "./Weather";
 import DailyForecastData from "./DailyForecastData";
 
@@ -40,8 +39,7 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <Search />
-        <Weather />
+        <Weather defaultCity="Auckland" />
         <DailyForecastData Data={Data} />
         <div className="openSource">
           This project was coded by Melina Waigant and it is {""}
