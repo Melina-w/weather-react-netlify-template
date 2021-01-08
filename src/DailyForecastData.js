@@ -6,6 +6,7 @@ export default function DailyForecastData(props) {
   props.Data.forEach(function (dataDay) {
     dailyData.push(
       <WeatherForecastDay
+        key={dataDay.day}
         day={dataDay.day}
         tempMin={dataDay.tempMin}
         tempMax={dataDay.tempMax}
