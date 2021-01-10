@@ -8,6 +8,7 @@ export default function DailyForecastData(props) {
       <WeatherForecastDay
         key={dataDay.day}
         day={dataDay.day}
+        icon={dataDay.icon}
         tempMin={dataDay.tempMin}
         tempMax={dataDay.tempMax}
         description={dataDay.description}
