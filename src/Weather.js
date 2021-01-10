@@ -6,7 +6,7 @@ import DailyForecastData from "./DailyForecastData";
 
 let apiKey = "49e74429d3a2f98000aa1a8e998c37eb";
 
-let days = ["Sun", "Mon", "Tues", "Wed", "Thrus", "Fri", "Sat"];
+let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
 export default function Weather() {
   let [forecastData, setForecastData] = useState([]);
@@ -41,7 +41,6 @@ export default function Weather() {
     //dt is in seconds & new date needs miliseconds.
     let date = new Date(firstItem.dt * 1000);
     let currentDay = date.getDay();
-    //console.log(currentDay);
     let forecastInfo = [];
     response.data.list.forEach(function (dataDay) {
       let date = new Date(dataDay.dt * 1000);
