@@ -3,29 +3,38 @@ import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import DailyForecastData from "./DailyForecastData";
-import WeatherIcon from "./WeatherIcon";
 
 let apiKey = "49e74429d3a2f98000aa1a8e998c37eb";
 
-export default function Weather(props) {
+let days = ["Sun", "Mon", "Tues", "Wed", "Thrus", "Fri", "Sat"];
+
+export default function Weather() {
   let [forecastData, setForecastData] = useState([]);
   let [weatherData, setWeatherData] = useState({ ready: false });
-  let [city, setCity] = useState(props.defaultCity);
+  let [city, setCity] = useState();
 
   function handleResponse(response) {
-    //console.log(response.data);
+    let description = response.data.weather[0].main;
+
+    let body = document.querySelector("body");
+    if (description.toLowerCase() === "clear") {
+      body.classList.remove("bad-weather-background");
+      body.classList.add("good-weather-background");
+    } else {
+      body.classList.remove("good-weather-background");
+      body.classList.add("bad-weather-background");
+    }
     setWeatherData({
       ready: true,
       temperature: Math.round(response.data.main.temp),
       city: response.data.name,
       wind: Math.round(response.data.wind.speed),
-      description: response.data.weather[0].main,
+      description: description,
       date: new Date(response.data.dt * 1000),
       humidity: response.data.main.humidity,
       icon: response.data.weather[0].icon,
     });
   }
-  let days = ["Sun", "Mon", "Tues", "Wed", "Thrus", "Fri", "Sat"];
 
   function handleForecastResponse(response) {
     let firstItem = response.data.list[0];
@@ -42,7 +51,6 @@ export default function Weather(props) {
       if (day !== currentDay) {
         currentDay = day;
 
-        console.log(dataDay);
         let dayData = {
           day: days[day],
           icon: dataDay.weather[0].icon,
@@ -57,6 +65,9 @@ export default function Weather(props) {
   }
 
   function search() {
+    if (city === undefined) {
+      findCurrentLocation();
+    }
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     let apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
@@ -69,6 +80,18 @@ export default function Weather(props) {
   }
   function handleCityChange(event) {
     setCity(event.target.value);
+  }
+  function updateCurrentLocation(currentPosition) {
+    let lat = currentPosition.coords.latitude;
+    let long = currentPosition.coords.longitude;
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+    let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+    axios.get(apiForecastUrl).then(handleForecastResponse);
+  }
+  function findCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(updateCurrentLocation);
   }
 
   if (weatherData.ready) {
@@ -96,7 +119,11 @@ export default function Weather(props) {
               </div>
             </form>
           </div>
-          <i className="fas fa-map-marker-alt" id="current-location-btn"></i>
+          <i
+            className="fas fa-map-marker-alt"
+            id="current-location-btn"
+            onClick={findCurrentLocation}
+          ></i>
         </div>
         <div className="container weather box"></div>
         <WeatherInfo data={weatherData} />

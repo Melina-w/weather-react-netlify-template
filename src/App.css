@@ -1,3 +1,6 @@
+body {
+  height: 100vh;
+}
 .App {
   font-family: "Comfortaa", cursive;
   padding: 28px 10px 0px 10px;

@@ -51,10 +51,13 @@
 }
 
 .temperature {
-  display: block;
   margin: 0 auto;
+  font-size: 20px;
 }
 
+.temperature-unit {
+  font-size: 12px;
+}
 .forecast {
   text-align: center;
 }
